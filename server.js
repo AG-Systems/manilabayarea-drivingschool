@@ -1,9 +1,11 @@
+var path = require('path');
 var express = require('express');
-var port = process.env.PORT || 3000;
-var app = express.createServer();
 
-app.get('/', function(request, response) {
-    response.sendfile(__dirname + '/index.html');
-}).configure(function() {
-    app.use('/images', express.static(__dirname + '/photos'));
-}).listen(port);
+var app = express();
+
+var staticPath = path.join(__dirname, '');
+app.use(express.static(staticPath));
+
+app.listen(3000, function() {
+  console.log('listening');
+});
